@@ -6,18 +6,18 @@ document.getElementById('x').addEventListener('click', () => {
     .then((json) => {
       console.log('promise chaining:', json.results[0].name.first)
     })
-    .catch((err) => console.error(err))
+    .catch((err) => console.log(err))
 })
 
 document.getElementById('y').addEventListener('click', async () => {
-  const userApi = 'https://randomuser.me/apii/'
+  const userApi = 'https://randomuser.me/apid/'
 
-  const response = await fetch(userApi)
+  try {
+    const response = await fetch(userApi)
 
-  if (response.ok) {
     const json = await response.json()
     console.log('async/await:', json.results[0].name.first)
-  } else {
-    console.error(`Error: ${response.status}`)
+  } catch (err) {
+    console.error(err)
   }
 })
